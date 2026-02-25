@@ -1,1 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ama Bijouterie</title>
 
+<link href="https://fonts.googleapis.com/css?family=Parisienne|Tangerine" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight:lighter ;
+    font-style: italic;
+    background:#eee;
+}
+
+
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:80px;
+    background:#000000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:3rem;
+}
+
+.logo img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+
+.logo h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:30px;
+    font-style: italic;
+    font-weight: lighter;
+    color: rgb(228, 197, 94);
+    padding-left: 15%;
+}
+
+.navbar nav{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.navbar nav a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    position:relative;
+}
+
+
+#cart-count{
+    position:absolute;
+    top:-8px;
+    right:-12px;
+    background:red;
+    color:white;
+    font-size:12px;
+    border-radius:50%;
+    padding:2px 6px;
+}
+
+
+.hero{
+    margin-top:70px;
+    height:70vh;
+    background:url("hero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    padding-bottom:30px;
+}
+
+.hero button{
+    padding:12px 35px;
+    font-size:18px;
+    border-radius:25px;
+    border:2px solid #555;
+    background:#e3e2dd;
+    cursor:pointer;
+}
+
+
+.trending{
+    padding:25px;
+    background:#dcdcdc;
+}
+
+.trending h1{
+    font-family:Parisienne;
+    font-size:45px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.gallery{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    max-height:450px;
+    overflow-y:auto;
+}
+
+.product{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.product img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.product button{
+    margin-top:10px;
+    padding:8px 20px;
+    border-radius:20px;
+    border:2px solid #555;
+    background:#e3e2dd;
+    cursor:pointer;
+}
+
+
+.footer{
+    background:#333;
+    color:#aaa;
+    text-align:center;
+    padding:15px;
+    font-size:14px;
+}
+@media(min-width:768px){
+    .gallery{
+    display:grid;
+    
+    flex-direction:column;
+    gap:15px;
+    max-height:450px;
+    
+    grid-template-columns: repeat( 4,1fr)
+}
+    .logo h2{
+       padding-left: 110%;
+       
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="logoo.lnk" alt="logo">
+        <h2>Ama bijoux</h2>
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="cart.html"> <i class="fa-solid fa-cart-shopping"> </i> <span id="cart-count">0</span></a>
+    </nav>
+</header>
+<div id="message" style="
+position: fixed;
+top: 80px;
+right: 20px;
+background: #4caf50;
+color: white;
+padding: 10px 20px;
+border-radius: 8px;
+display: none;
+z-index: 999;
+"> Product added to cart
+</div>
+<section class="hero">
+    <button onclick="document.querySelector('.trending').scrollIntoView({behavior:'smooth'})">
+        Explorer
+    </button>
+</section>
+
+<section class="trending">
+    <h1>Trending</h1>
+
+    <div class="gallery">
+
+        <div class="product">
+            <img src="armaniwatch.jpg">
+            <h5>Female Armani Watch</h5>
+            <p>150 MAD</p>
+            <button onclick="addToCart('Female Armani Watch',150,'armaniwatch.jpg')">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="product">
+            <img src="beddazledgoldbracelet.jpg">
+            <h5> Gold Spark Bracelet</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Gold Spark Bracelet',60,'beddazledgoldbracelet.jpg')">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="product">
+            <img src="blueleatherbeltbrclt.jpg">
+            <h5>Blue Leather Belt Bracelet</h5>
+            <p>100 MAD</p>
+            <button onclick="addToCart('Blue Leather Bracelet',100,'blueleatherbeltbrclt.jpg')">
+                Add to Cart
+            </button>
+        </div>
+        <div class="product">
+            <img src="bvlgarygoldwatch.jpg">
+            <h5>Gold Triangular Watch</h5>
+            <p>150 MAD</p>
+            <button onclick="addToCart('Gold Triangular Watch',150,'bvlgarygoldwatch.jpg')">
+                Add to Cart
+            </button>
+        </div>  <div class="product">
+            <img src="cartierclouthickbrclt.jpg">
+            <h5>Cartier Clou Bracelet</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Cartier Clou Bracelet',60,'cartierclouthickbrclt.jpg')">
+                Add to Cart
+            </button>
+        </div>  <div class="product">
+            <img src="chainedring.png">
+            <h5>Chained Gold Ring</h5>
+            <p>50 MAD</p>
+            <button onclick="addToCart('Chained Gold Ring',50,'chainedring.jpg')">
+                Add to Cart
+            </button>
+        </div>  <div class="product">
+            <img src="cleopatraring.png">
+            <h5>Cleopatra Eye Ring</h5>
+            <p>50 MAD</p>
+            <button onclick="addToCart('Cleopatra Eye Ring',50,'cleopatraring.jpg')">
+                Add to Cart
+            </button>
+        </div>  <div class="product">
+            <img src="clou.jpg">
+            <h5> Cartier Clou Bracelet</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Cartier Clou Bracelet ',60,'clou.jpg')">
+                Add to Cart
+            </button>
+        </div>  <div class="product">
+            <img src="cloubracelet.jpg">
+            <h5>Clou Bracelet Spark</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Clou Bracelet Spark',60,'cloubracelet.jpg')">
+                Add to Cart
+            </button>
+        </div>  <div class="product">
+            <img src="clougoldchainedbracelet.jpg">
+            <h5>Gold Chain Clou Bracelet</h5>
+            <p>50 MAD</p>
+            <button onclick="addToCart('Gold Chain Clou Bracelet',50,'clougoldchainedbracelet.jpg')">
+                Add to Cart
+            </button>
+        </div>
+        <div class="product">
+            <img src="clouring1.png">
+            <h5>Mini Gold Clou Spark Ring</h5>
+            <p>50 MAD</p>
+            <button onclick="addToCart('Mini Gold Clou Spark Ring',50,'clouring1.jpg')">
+                Add to Cart
+            </button>
+        </div><div class="product">
+            <img src="dazledbangle.png">
+            <h5>Vintage Gold Spark Bangle</h5>
+            <p>70 MAD</p>
+            <button onclick="addToCart('Vintage Gold Spark Bangle',70,'dazledbangle.jpg')">
+                Add to Cart
+            </button>
+        </div><div class="product">
+            <img src="goldbracelet.png">
+            <h5>Gold Dazzled Ends Bracelet</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Gold Dazzled Ends Bracelet',60,'goldbracelet.jpg')">
+                Add to Cart
+            </button>
+        </div><div class="product">
+            <img src="goldchainedbracelet.jpg">
+            <h5>Gold Chain Paterns Bracelet</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Gold Chain Paterns Bracelet',60,'goldchainedbracelet.jpg')">
+                Add to Cart
+            </button>
+        </div>
+        <div class="product">
+            <img src="goldcloubeddazledbrclt.jpg">
+            <h5>Gold Dice Dazzled Bracelet</h5>
+            <p>60 MAD</p>
+            <button onclick="addToCart('Gold Dice Dazzled Bracelet',60,'goldcloubeddazledbrclt.jpg')">
+                Add to Cart
+            </button>
+        </div>
+        <div class="product">
+            <img src="goldspikedbasicringandbracelet.jpg">
+            <h5>Gold Spikes; Ring + Bracelet</h5>
+            <p>110 MAD</p>
+            <button onclick="addToCart('Gold Spikes; Ring + Bracelet',110,'goldspikedbasicringandbracelet.jpg')">
+                Add to Cart
+            </button></div>
+            <div class="product">
+                <img src="goldspikedbeddazledbracelet.jpg">
+                <h5>Gold Spikes Dazzled Bracelet</h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold Spikes Dazzled Bracelet',60,'goldspikedbasicringandbracelet.jpg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="khemissabracelet.png">
+                <h5>Gold Khemissa Bracelet</h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold Khemissa Bracelet',60,'khemissabracelet.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="kissbracelet.png">
+                <h5>Gold Kiss Print Bracelet</h5>
+                <p>50 MAD</p>
+                <button onclick="addToCart('Gold Kiss Print Bracelet',50,'kissbracelet.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="lockbracelet.jpg">
+                <h5>Gold lock Bracelet</h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold lock Bracelet',60,'lockbracelet.jpg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="longlucknecklace.png">
+                <h5>Gold Luck Chain </h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold Luck Chain',60,'longlucknecklace.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="louise.jpg">
+                <h5>Traditional LOUISE gold necklace </h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Traditional LOUISE gold necklace',60,'louise.jpg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="luckbracelet.png">
+                <h5>Gold Spark Luck Bracelet </h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold Spark Luck Bracelet',60,'luckbracelet.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="lvearings.jpg">
+                <h5>Gold LV earings </h5>
+                <p>65 MAD</p>
+                <button onclick="addToCart('Gold LV earings',65,'lvearings.jpg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="radkonecklace1.jpeg">
+                <h5>Gold Radko necklace </h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold Radko necklace',60,'radkonecklace1.jpeg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            
+            <div class="product">
+                <img src="radkonecklacewithbutterfly.jpg">
+                <h5>Gold Butterfly Radko necklace  </h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold Butterfly Radko necklace',60,'radkonecklacewithbutterfly.jpg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="rainbow.jpg">
+                <h5>Gold colorful gemstones necklace  </h5>
+                <p>60 MAD</p>
+                <button onclick="addToCart('Gold colorful gemstones necklace',60,'rainbow.jpg')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="ringrectangular.png">
+                <h5>Elena Ring  </h5>
+                <p>50 MAD</p>
+                <button onclick="addToCart('Elena Ring',50,'ringrectangular.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="roundring.png">
+                <h5> Alice Ring  </h5>
+                <p>50 MAD</p>
+                <button onclick="addToCart('Alice Ring',50,'roundring.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="sevenbangles.png">
+                <h5> traditional gold bangles set  </h5>
+                <p>150 MAD</p>
+                <button onclick="addToCart('raditional gold bangles set',150,'sevenbangles.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="starsoutoir.png">
+                <h5> Long star Triple chain necklace  </h5>
+                <p>100 MAD</p>
+                <button onclick="addToCart('Long star Triple chain necklace ',100,'starsoutoir.png')">
+                    Add to Cart
+                </button>
+
+            </div> <div class="product">
+                <img src="thatglobebracelet2.jpg">
+                <h5> The LV gold Bracelet  </h5>
+                <p>50 MAD</p>
+                <button onclick="addToCart('The LV gold Bracelet',50,'thatglobebracelet2.jpg')">
+                    Add to Cart
+                </button>
+
+            </div> <div class="product">
+                <img src="vancleef.jpg">
+                <h5> Gold green Van Cleef Bracelet  </h5>
+                <p>50 MAD</p>
+                <button onclick="addToCart('Gold green Van Cleef Bracelet',50,'vancleef.jpg')">
+                    Add to Cart
+                </button>
+
+            </div> <div class="product">
+                <img src="versacewatch.jpg">
+                <h5> Females Versache Watch  </h5>
+                <p>100 MAD</p>
+                <button onclick="addToCart('Females Versache Watch',100,'versacewatch.jpg')">
+                    Add to Cart
+                </button>
+
+            </div> <div class="product">
+                <img src="vintagering.png">
+                <h5> Vintage Elizabeth Ring  </h5>
+                <p>50 MAD</p>
+                <button onclick="addToCart('Vintage Elizabeth Ring',50,'vintagering.png')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+    </div>
+</section>
+
+<footer>
+    © AmaBijouterie 2024 — All rights reserved
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function updateCartCount(){
+    document.getElementById("cart-count").innerText = cart.length;
+}
+
+function showMessage(text){
+    const msg = document.getElementById("message");
+    msg.innerText = text;
+    msg.style.display = "block";
+       setTimeout(()=>{
+      msg.style.display = "none";
+     },2000);
+}
+  function addToCart(name, price, image){
+      const existing = cart.find(item => item.name === name);
+  
+
+    if(existing){
+        existing.quantity += 1;
+    } else {
+        cart.push({name, price, image, quantity:1});
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    showMessage("Product added to cart!");
+}
+
+updateCartCount();
+</script>
+
+</body>
+</html>
